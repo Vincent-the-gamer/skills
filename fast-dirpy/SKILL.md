@@ -6,9 +6,9 @@ license: Complete terms in LICENSE.txt
 
 > [!IMPORTANT]
 >
-> 1. Always open the native terminal to run commands, the videos download process is a long connection, fast-dirpy supports downloading .mp4 and .m3u8 format.
-> 2. Before run commands, check if fast-dirpy is installed, if not, use npx.
-> 3. if commands fails, like direct link fetch fails or download fails, tell the user and stop running.
+> 1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
+> 2. If commands fails, like direct link fetch fails or download fails, tell the user and stop running.
+> 3. If task successed, tell the user.
 
 # fast-dirpy Usage Guide
 
