@@ -4,6 +4,12 @@ description: fast-dirpy is a CLI based on Node.js, it can extract direct links a
 license: Complete terms in LICENSE.txt
 ---
 
+> [!IMPORTANT]
+>
+> 1. Always open the native terminal to run commands, the videos download process is a long connection, fast-dirpy supports downloading .mp4 and .m3u8 format.
+> 2. Before run commands, check if fast-dirpy is installed, if not, use npx.
+> 3. if commands fails, like direct link fetch fails or download fails, tell the user and stop running.
+
 # fast-dirpy Usage Guide
 
 [GitHub Repository](https://github.com/Vincent-the-gamer/fast-dirpy)
@@ -17,7 +23,7 @@ Get further help with: `fast-dirpy --help`
 
 ## Configuration
 
-You can configure fast-dirpy by creating a fast-dirpy.config.(js, ts, json), see GitHub Repo for more info.
+You can configure fast-dirpy by creating a fast-dirpy.config.(js, ts, mjs, mts, json), see GitHub Repo for more info.
 
 **Important**: The config file should in your current working directory, or else giving a config file path:
 
