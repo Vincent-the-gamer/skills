@@ -12,6 +12,15 @@ Tool Repo: [fast-dirpy](https://github.com/Vincent-the-gamer/fast-dirpy)
     <img src=".github/examples/fast-dirpy-example.jpg" style="width: 120px;"/>
 </div>
 
+### discipline
+
+> [!IMPORTANT]
+> This skill is for security and disables the most automation requests, so consider yourself if you need it.
+
+The skill that block dangerous operations like file system, network requests, etc.
+
+This skill only allows the skills enabled in your Agent, or skills whitelisted in the discipline skills to be read and use.
+
 And more skills are coming soon.
 
 ## License
