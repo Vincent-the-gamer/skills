@@ -19,7 +19,7 @@ Tool Repo: [fast-dirpy](https://github.com/Vincent-the-gamer/fast-dirpy)
 
 The skill that block dangerous operations like file system, network requests, etc.
 
-This skill only allows the skills enabled in your Agent, or skills whitelisted in `discipline` skill itself.
+This skill only allows the skills enabled in your Agent and skills whitelisted in `discipline` skill itself.
 
 ### More
 

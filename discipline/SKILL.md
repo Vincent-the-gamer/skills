@@ -40,7 +40,7 @@ When `discipline` is enabled, the following operations are **completely prohibit
 
 ### 4. Dynamic Code Execution
 
-- **Blocked**: `eval`, `exec`, `compile`, `__import__`, `imp.load_module`
+- **Blocked**: `eval`, `exec`, `compile`, `__import__`, `imp.load_module`, etc.
 - **Reason**: Prevents code injection and runtime behavior escape
 
 ### 5. Process & System Information
@@ -53,6 +53,7 @@ When `discipline` is enabled, the following operations are **completely prohibit
 The Agent may **only** perform operations through:
 
 - Calling whitelisted skills
+- Calling skills enabled in the Agent
 - Pure text reasoning and conversation
 - Reading its own existing context
 
