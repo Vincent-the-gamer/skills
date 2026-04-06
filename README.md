@@ -2,7 +2,7 @@
 
 Vincent's Agent Skills
 
-## Examples
+## Skill List
 
 ### fast-dirpy
 
