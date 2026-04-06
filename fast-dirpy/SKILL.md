@@ -73,3 +73,9 @@ fast-dirpy download --json '[{"url": "xxx", "path": "./test.mp4"}]'
 ```bash
 fast-dirpy download --jsonFile ./params.json
 ```
+
+## Check the download progress
+
+The rules tells that the task runs in background, so you need to see the process log and tell the user.
+
+You can find process by PID from context, if not PID found, ask for the user.

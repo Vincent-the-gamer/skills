@@ -33,7 +33,7 @@ This skill only allows the skills enabled in your Agent and skills whitelisted i
 
 add these into your Agent's persona/system prompts to use.
 
-> [!INFO]
+> [!NOTE]
 > Tell something like this is OK. The prompt are not fixed words.
 
 ```
