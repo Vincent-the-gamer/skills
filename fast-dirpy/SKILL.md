@@ -1,15 +1,9 @@
 ---
 name: fast-dirpy
-version: v1.0.0
+version: 1.0.1
 description: fast-dirpy is a CLI based on Node.js, it can extract direct links and download videos from video websites.
 license: Complete terms in LICENSE.txt
 ---
-
-> [!IMPORTANT]
->
-> 1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
-> 2. If commands fails, like direct link fetch fails or download fails, tell the user and stop running.
-> 3. If task successed, tell the user.
 
 # fast-dirpy Usage Guide
 
@@ -21,6 +15,14 @@ You can call fast-dirpy CLI in two ways:
 - No installation, directly use it through npx: `npx fast-dirpy <command>`
 
 Get further help with: `fast-dirpy --help`
+
+## Rules
+
+1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
+2. Run the task in the background asynchronously, don't block the Agent, and tell user the PID of process, then directly write the log into a log file, which as the same path of downloaded video, don't tell user the log, only give the log path to user.
+3. If commands fails, show the user error message and stop running.
+4. When task is complete, tell user the result, no matter success or failure.
+5. If network request timed out, show the user error message and stop running.
 
 ## Configuration
 

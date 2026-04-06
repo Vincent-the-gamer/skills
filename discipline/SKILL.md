@@ -1,6 +1,6 @@
 ---
 name: discipline
-version: 1.0.0
+version: 1.0.1
 description: Enforces Agent to only execute operations through predefined skills. Blocks all direct system calls, file operations, network requests, and code execution.
 mode: enforce
 priority: highest
@@ -52,10 +52,13 @@ When `discipline` is enabled, the following operations are **completely prohibit
 
 The Agent may **only** perform operations through:
 
-- Calling whitelisted skills
-- Calling skills enabled in the Agent
-- Pure text reasoning and conversation
-- Reading its own existing context
+- Calling whitelisted skills.
+- Calling skills enabled in the Agent.
+- Pure reasoning and conversation, allow sending and receiving text, pictures, videos, and other files in the conversation.
+- Empty the trash bin of your computer.
+- Reading its own existing context.
+- Use browser to explore the Internet.
+- Print screen and send the picture to user.
 
 ## Whitelist Configuration
 
