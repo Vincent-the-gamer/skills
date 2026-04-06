@@ -58,7 +58,9 @@ The Agent may **only** perform operations through:
 
 ## Whitelist Configuration
 
-Default whitelist always includes the enabled skills of the Agent, additionally, you can add some skill in the following list:
+Default whitelist always includes the enabled skills of the Agent.
+
+Additionally, you can add some skill in the following list:
 
 ```yaml
 enabled_skills:
