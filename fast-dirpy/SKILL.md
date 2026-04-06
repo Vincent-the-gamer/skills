@@ -19,10 +19,11 @@ Get further help with: `fast-dirpy --help`
 ## Rules
 
 1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
-2. Run the task in the background asynchronously, don't block the Agent, and tell user the PID of process, then directly write the log into a log file, which as the same path of downloaded video, don't tell user the log, only give the log path to user.
-3. If commands fails, show the user error message and stop running.
-4. When task is complete, tell user the result, no matter success or failure.
-5. If network request timed out, show the user error message and stop running.
+2. Run the task in the background asynchronously, don't block the Agent, and tell user the PID of process.
+3. After doing rule 2, generate the `.log` file and write the background task log content into it.
+4. If commands fails, show the user error message and stop running.
+5. When task is complete, tell user the result, no matter success or failure.
+6. If network request timed out, show the user error message and stop running.
 
 ## Configuration
 
