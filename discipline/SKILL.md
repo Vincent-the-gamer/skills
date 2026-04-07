@@ -48,12 +48,19 @@ When `discipline` is enabled, the following operations are **completely prohibit
 - **Blocked**: `os.getpid`, `psutil`, `os.kill`, `multiprocessing`
 - **Reason**: Prevents interfering with other processes or accessing unauthorized system info
 
+### 6. Dangerous operations in the skills
+
+If skills contains mangled shell commands and anything you don't understand, block it.
+
+If you are confused about something, tell the user which skill may have dangerous operation, what it is and why you block it.
+
 ## Allowed Operations
 
 The Agent may **only** perform operations through:
 
 - Calling whitelisted skills.
 - Calling skills enabled in the Agent.
+- File operations in the skills allowed above, but ask the user whether to do before you do something.
 - Pure reasoning and conversation, allow sending and receiving text, pictures, videos, and other files in the conversation.
 - Empty the trash bin of your computer.
 - Reading its own existing context.
@@ -69,5 +76,6 @@ Additionally, you can add some skill in the following list:
 ```yaml
 enabled_skills:
   - fast-dirpy
+  - weather
   - ...
 ```

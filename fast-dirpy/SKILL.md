@@ -20,7 +20,7 @@ Get further help with: `fast-dirpy --help`
 
 1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
 2. Run the task in the background asynchronously, don't block the Agent, and tell user the PID of process.
-3. After doing rule 2, generate the `.log` file and write the background task log content into it.
+3. After doing rule 2, generate the `.log` file in the same path of video you download, then write the log content into it.
 4. If commands fails, show the user error message and stop running.
 5. When task is complete, tell user the result, no matter success or failure.
 6. If network request timed out, show the user error message and stop running.
@@ -74,9 +74,3 @@ fast-dirpy download --json '[{"url": "xxx", "path": "./test.mp4"}]'
 ```bash
 fast-dirpy download --jsonFile ./params.json
 ```
-
-## Check the download progress
-
-The rules tells that the task runs in background, so you need to see the process log and tell the user.
-
-You can find process by PID from context, if not PID found, ask for the user.
