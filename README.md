@@ -6,6 +6,7 @@ Vincent's Agent Skills
 
 - [fast-dirpy](./fast-dirpy/README.md)
 - [discipline](./discipline/README.md)
+- [weather](./weather/README.md)
 
 More skills are coming soon.
 
