@@ -1,6 +1,6 @@
 # base64
 
-> [!INFO]
+> [!NOTE]
 > This skill is practicing the skill scripts, but it's indeed functional <(^v^)>.
 
 This skill can encode/decode text and file into base64 string, or backwards(decode).
