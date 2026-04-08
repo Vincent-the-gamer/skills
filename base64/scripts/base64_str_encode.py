@@ -19,8 +19,8 @@ def encode_to_base64(original_str):
 def main():
     # 检查命令行参数
     if len(sys.argv) != 2:
-        print("用法: python script.py <string_to_encode>")
-        print("示例: python script.py 'Hello World'")
+        print("Usage: python script.py <string_to_encode>")
+        print("Example: python script.py 'Hello World'")
         sys.exit(1)
 
     # 获取要编码的字符串
@@ -30,8 +30,8 @@ def main():
     encoded_str = encode_to_base64(original_str)
 
     # 输出结果
-    print(f"编码前: {original_str}")
-    print(f"编码后: {encoded_str}")
+    print(f"Original: {original_str}")
+    print(f"Encoded: {encoded_str}")
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ def decode_base64_to_file_with_mimetype(data_uri, output_path):
     # 格式: data:<mimetype>;base64,<data>
     match = re.match(r"data:(?P<mimetype>.*?);base64,(?P<data>.*)", data_uri)
     if not match:
-        raise ValueError("无效的Base64 Data URI格式")
+        raise ValueError("Invalid Base64 Data URI format")
 
     mimetype = match.group("mimetype")
     data_str = match.group("data")
@@ -23,19 +23,19 @@ def decode_base64_to_file_with_mimetype(data_uri, output_path):
     with open(output_path, "wb") as f:
         f.write(file_data)
 
-    print(f"文件已保存: {output_path}")
-    print(f"MIME类型: {mimetype}")
+    print(f"File saved: {output_path}")
+    print(f"MIME type: {mimetype}")
     return mimetype
 
 
 def main():
     # 检查命令行参数
     if len(sys.argv) < 2:
-        print("用法: python base64_file_decode.py <base64_data_uri> [output_file]")
+        print("Usage: python base64_file_decode.py <base64_data_uri> [output_file]")
         print(
-            "示例: python base64_file_decode.py 'data:text/plain;base64,SGVsbG8gV29ybGQ=' output.txt"
+            "Example: python base64_file_decode.py 'data:text/plain;base64,SGVsbG8gV29ybGQ=' output.txt"
         )
-        print("或从文件读取: python base64_file_decode.py -f data_uri.txt output.pdf")
+        print("Or from file: python base64_file_decode.py -f data_uri.txt output.pdf")
         sys.exit(1)
 
     # 处理输入
@@ -53,7 +53,7 @@ def main():
     try:
         decode_base64_to_file_with_mimetype(data_uri, output_path)
     except Exception as e:
-        print(f"错误: {e}")
+        print(f"Error: {e}")
         sys.exit(1)
 
 

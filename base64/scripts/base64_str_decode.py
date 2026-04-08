@@ -16,14 +16,14 @@ def decode_from_base64(encoded_str):
 
         return decoded_str
     except Exception as e:
-        return f"解码失败: {e}"
+        return f"Decoding failed: {e}"
 
 
 def main():
     # 检查命令行参数
     if len(sys.argv) != 2:
-        print("用法: python decode.py <base64_string>")
-        print("示例: python decode.py 'SGVsbG8gV29ybGQ='")
+        print("Usage: python decode.py <base64_string>")
+        print("Example: python decode.py 'SGVsbG8gV29ybGQ='")
         sys.exit(1)
 
     # 获取要解码的Base64字符串
@@ -33,8 +33,8 @@ def main():
     decoded_str = decode_from_base64(encoded_str)
 
     # 输出结果
-    print(f"Base64字符串: {encoded_str}")
-    print(f"解码后: {decoded_str}")
+    print(f"Base64 String: {encoded_str}")
+    print(f"Decoded: {decoded_str}")
 
 
 if __name__ == "__main__":

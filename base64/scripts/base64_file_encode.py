@@ -32,10 +32,14 @@ def encode_file_to_base64(file_path):
 def main():
     # 检查命令行参数
     if len(sys.argv) < 2:
-        print("用法: python base64_file_encode.py <file_path> [阈值]")
-        print("示例: python base64_file_encode.py image.png")
-        print("示例: python base64_file_encode.py image.png 500  # 设置阈值为500字符")
-        print("说明: 超过阈值自动保存到txt文件，默认阈值为200字符")
+        print("Usage: python base64_file_encode.py <file_path> [threshold]")
+        print("Example: python base64_file_encode.py image.png")
+        print(
+            "Example: python base64_file_encode.py image.png 500 # Example: Set threshold to 500 characters"
+        )
+        print(
+            "Note: If the encoded string exceeds the threshold, it will be saved to a txt file."
+        )
         sys.exit(1)
 
     file_path = sys.argv[1]
@@ -47,17 +51,17 @@ def main():
     base64_str = encode_file_to_base64(file_path)
 
     if base64_str is None:
-        print(f"错误: 文件 '{file_path}' 不存在")
+        print(f"Error: File '{file_path}' is not exist.")
         sys.exit(1)
 
     # 获取文件信息
     file_size = os.path.getsize(file_path)
     mime_type = base64_str.split(";")[0].replace("data:", "")
 
-    print(f"文件: {file_path}")
-    print(f"MIME类型: {mime_type}")
-    print(f"文件大小: {file_size} 字节 ({file_size / 1024:.2f} KB)")
-    print(f"编码长度: {len(base64_str)} 字符")
+    print(f"File: {file_path}")
+    print(f"MIME Type: {mime_type}")
+    print(f"File Size: {file_size} bytes ({file_size / 1024:.2f} KB)")
+    print(f"Encoded Length: {len(base64_str)} characters")
 
     # 检查长度
     if len(base64_str) > threshold:
@@ -69,11 +73,13 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(base64_str)
 
-        print(f"\n编码结果超过{threshold}字符，已自动保存到文件")
-        print(f"保存路径: {output_file}")
+        print(
+            f"\nEncode result exceeds {threshold} characters, saved to file automatically."
+        )
+        print(f"Save path: {output_file}")
 
         # 可选：显示前100个字符预览
-        print("\n预览（前100字符）:")
+        print("\nPreview (first 100 characters):")
         print("-" * 50)
         print(base64_str[:100] + "...")
         print("-" * 50)
