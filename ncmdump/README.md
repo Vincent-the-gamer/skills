@@ -1,7 +1,7 @@
 # ncmdump
 
 > [!NOTE]
-> I recommend you to install/downlaod ncmdump first.
+> I recommend you to install/download ncmdump first.
 >
 > For Rust developers: `cargo install ncmdump-bin`
 >
