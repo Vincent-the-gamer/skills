@@ -1,6 +1,6 @@
 ---
 name: ncmdump
-version: 1.0.0
+version: 1.0.1
 description: This skill is to decode the .ncm format audio file into .mp3/.flac format.
 license: Complete terms in LICENSE.txt
 ---
@@ -29,13 +29,13 @@ If Rust is installed, using Cargo to install ncmdump:
 cargo install ncmdump-bin
 ```
 
-If it says cargo not found, download it for github releases, choose latest version:
+If it says cargo not found, download ncmdump for **github releases**, use latest version:
 
-[ncmdump.rs releases](https://github.com/iqiziqi/ncmdump.rs/releases)
-
-**If you can’t find the binary file, try GitHub Release API.**
+[ncmdump.rs latest release](https://github.com/iqiziqi/ncmdump.rs/releases/latest)
 
 Ensure you choose the right operating system and architecture.
+
+**If you can’t find the binary file, try GitHub Release API.**
 
 ## Usage
 
