@@ -6,7 +6,7 @@ Tool Repo: [fast-dirpy](https://github.com/Vincent-the-gamer/fast-dirpy)
     <img src=".github/examples/fast-dirpy-example.jpg" style="width: 120px;"/>
 </div>
 
-Trigger words:
+## Trigger words:
 
 ```
 # English

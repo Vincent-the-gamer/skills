@@ -8,6 +8,7 @@ Vincent's Agent Skills
 - [discipline](./discipline/README.md)
 - [weather](./weather/README.md)
 - [base64](./base64/README.md)
+- [ncmdump](./ncmdump/README.md)
 
 More skills are coming soon.
 
