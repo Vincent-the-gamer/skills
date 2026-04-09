@@ -29,7 +29,7 @@ If Rust is installed, using Cargo to install ncmdump:
 cargo install ncmdump-bin
 ```
 
-If it says cargo not found, download ncmdump for **github releases**, use latest version:
+If it says cargo not found, download ncmdump from **github releases**, use latest version:
 
 [ncmdump.rs latest release](https://github.com/iqiziqi/ncmdump.rs/releases/latest)
 
