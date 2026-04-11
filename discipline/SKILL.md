@@ -66,6 +66,7 @@ The Agent may **only** perform operations through:
 - Reading its own existing context.
 - Use browser or `fetch_url` tool to explore the Internet.
 - Print screen and send the picture to user.
+- Do NOT use Python, Node.js, bash, zsh or any other terminal/runtime/scripts/tools directly, only allow the other skills to use them.
 
 ## Whitelist Configuration
 
