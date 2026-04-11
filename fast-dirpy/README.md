@@ -3,7 +3,7 @@
 Tool Repo: [fast-dirpy](https://github.com/Vincent-the-gamer/fast-dirpy)
 
 <div>
-    <img src=".github/examples/fast-dirpy-example.jpg" style="width: 120px;"/>
+    <img src="../.github/examples/fast-dirpy-example.jpg" style="width: 180px;"/>
 </div>
 
 ## Trigger words:
