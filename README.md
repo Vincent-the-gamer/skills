@@ -20,7 +20,7 @@ More skills are coming soon.
 
 Usage: `npx @vince-gamer/skills --help`
 
-List available skills: `npx @vince-gamer/skills lisst`
+List available skills: `npx @vince-gamer/skills list`
 
 Download skills:
 
@@ -33,7 +33,7 @@ npx @vince-gamer/skills download <skill_name>
 # custom path
 npx @vince-gamer/skills download <skill_name> --save-path ./xxx
 
-# use mirror of raw.githubusercontent.com
+# use mirror of https://raw.githubusercontent.com
 npx @vince-gamer/skills download <skill_name> --mirror https://xxx
 ```
 
