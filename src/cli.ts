@@ -21,7 +21,7 @@ const skillList: string[] = [
 cli.command("list", "List skills.")
   .alias("ls")
   .action(() => {
-    logger.success(skillList.join(", "))
+    logger.success("Available skills: " + skillList.join(", "))
   })
 
 cli.command("download <skill:string>", "Download specific skill.")
