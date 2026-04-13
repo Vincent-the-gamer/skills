@@ -5,7 +5,7 @@ import { consola } from 'consola'
 /**
  * Logger instance
  */
-export const logger: ConsolaInstance = consola.withTag('verche')
+export const logger: ConsolaInstance = consola.withTag('skills')
 
 export function setSilent(silent: boolean): void {
   if (!('CONSOLA_LEVEL' in process.env)) {
