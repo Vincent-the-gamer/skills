@@ -3,16 +3,20 @@ import pkgJson from '../package.json'
 import restoreCursor from 'restore-cursor'
 import { logger } from "./utils/logger";
 import axios from "./utils/axios";
+import { downloadSkillFromGitHub } from "./utils/github";
 
 const cli: CAC = cac("skills")
 
 const { version } = pkgJson
 
-const skillLinkMap: Record<string, string> = {
-  base64: ""
-}
-
-const skillList = Object.keys(skillLinkMap)
+const skillList: string[] = [
+  "base64",
+  "discipline",
+  "fast-dirpy",
+  "heihua",
+  "ncmdump",
+  "weather"
+]
 
 cli.command("list", "List skills.")
   .alias("ls")
@@ -22,16 +26,20 @@ cli.command("list", "List skills.")
 
 cli.command("download <skill:string>", "Download specific skill.")
   .alias("dl")
-  .action(async (skill: string) => {
+  .option("savePath <path>", "The path to save the skill to.")
+  .action(async (skill: string, options: Record<string, any>) => {
     if (!skillList.includes(skill)) {
       logger.error(`${skill} not found!`)
       return
     } else {
-      const { data } = await axios.get("https://download-directory.github.io/", {
-        params: {
-          url: ""
-        }
-      })
+      let savePath: string
+      if (!options.savePath) {
+        savePath = process.cwd() + `/skills/${skill}`
+        logger.warn(`--savePath not provided! Defaulting to ${savePath}`)
+      } else {
+        savePath = options.savePath
+      }
+      await downloadSkillFromGitHub(`skills/${skill}`, savePath)
     }
   })
 
