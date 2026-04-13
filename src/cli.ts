@@ -12,11 +12,12 @@ const skillLinkMap: Record<string, string> = {
   base64: ""
 }
 
+const skillList = Object.keys(skillLinkMap)
 
 cli.command("list", "List skills.")
   .alias("ls")
   .action(() => {
-    logger.success(Object.keys(skillLinkMap).join(", "))
+    logger.success(skillList.join(", "))
   })
 
 cli.command("download <skill:string>", "Download specific skill.")
@@ -28,7 +29,7 @@ cli.command("download <skill:string>", "Download specific skill.")
     } else {
       const { data } = await axios.get("https://download-directory.github.io/", {
         params: {
-          url
+          url: ""
         }
       })
     }
