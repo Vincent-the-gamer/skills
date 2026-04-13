@@ -2,7 +2,7 @@
   "name": "@vince-gamer/skills",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Vincent's Agent Skills.",
   "author": "Vincent-the-gamer",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
