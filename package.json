@@ -1,0 +1,58 @@
+{
+  "name": "@vince-gamer/skills",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "author": "Vincent-the-gamer",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "tsx": "tsx",
+    "build": "tsdown"
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    }
+  },
+  "bin": {
+    "skills": "bin/skills.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.mts"
+      ]
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "skills",
+    "agent skills"
+  ],
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "axios": "^1.15.0",
+    "cac": "^7.0.0",
+    "consola": "^3.4.2",
+    "restore-cursor": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsdown": "^0.21.7",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

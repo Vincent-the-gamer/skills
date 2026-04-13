@@ -4,11 +4,18 @@ Vincent's Agent Skills
 
 ## Skill List
 
-- [fast-dirpy](./fast-dirpy/README.md)
-- [discipline](./discipline/README.md)
-- [weather](./weather/README.md)
-- [base64](./base64/README.md)
-- [ncmdump](./ncmdump/README.md)
+Download skill:
+
+```bash
+# e.g. npx @vince-gamer/skills download ncmdump
+npx @vince-gamer/skills download <skill_name>
+```
+
+- [fast-dirpy](./skills/fast-dirpy/README.md)
+- [discipline](./skills/discipline/README.md)
+- [weather](./skills/weather/README.md)
+- [base64](./skills/base64/README.md)
+- [ncmdump](./skills/ncmdump/README.md)
 
 More skills are coming soon.
 
