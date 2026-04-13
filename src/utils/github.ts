@@ -16,7 +16,7 @@ async function getBranchContent(repo: string, branch: string = 'main', recursive
   return data;
 }
 
-export async function downloadSkillFromGitHub(filePath: string, savePath: string, branch: string = 'main') {
+export async function downloadSkillFromGitHub(filePath: string, savePath: string, branch: string = 'main', mirror?: string) {
   try {
     const { tree } = await getBranchContent("Vincent-the-gamer/skills", branch, true);
 
@@ -29,9 +29,13 @@ export async function downloadSkillFromGitHub(filePath: string, savePath: string
 
     console.log(`${filesToDownload.length} files found to download.`);
 
+    if(mirror?.endsWith('/')) {
+      mirror = mirror.slice(0, -1);
+    }
+
     // 创建所有下载任务的 Promise 数组
     const downloadPromises = filesToDownload.map(async (file: any) => {
-      const url = `https://raw.githubusercontent.com/Vincent-the-gamer/skills/${branch}/${file.path}`;
+      const url = `${mirror ?? 'https://raw.githubusercontent.com'}/Vincent-the-gamer/skills/${branch}/${file.path}`;
 
       // 构建完整的本地保存路径
       const localFilePath = path.join(savePath, file.path.replace(filePath, ''));

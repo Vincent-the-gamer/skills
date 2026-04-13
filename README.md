@@ -8,7 +8,14 @@ Download skill:
 
 ```bash
 # e.g. npx @vince-gamer/skills download ncmdump
+# Default save path: cwd(current work directory)/<skill-name>
 npx @vince-gamer/skills download <skill_name>
+
+# custom path
+npx @vince-gamer/skills download <skill_name> --save-path ./xxx
+
+# use mirror of raw.githubusercontent.com
+npx @vince-gamer/skills download <skill_name> --mirror https://xxx
 ```
 
 - [fast-dirpy](./skills/fast-dirpy/README.md)

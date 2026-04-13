@@ -27,6 +27,8 @@ cli.command("list", "List skills.")
 cli.command("download <skill:string>", "Download specific skill.")
   .alias("dl")
   .option("savePath <path>", "The path to save the skill to.")
+  .option("mirror <url>", "The mirror URL to use for downloading.")
+  .option("branch <branch>", "The branch to download from.")
   .action(async (skill: string, options: Record<string, any>) => {
     if (!skillList.includes(skill)) {
       logger.error(`${skill} not found!`)
@@ -39,7 +41,7 @@ cli.command("download <skill:string>", "Download specific skill.")
       } else {
         savePath = options.savePath
       }
-      await downloadSkillFromGitHub(`skills/${skill}`, savePath)
+      await downloadSkillFromGitHub(`skills/${skill}`, savePath, options.branch || 'main', options.mirror)
     }
   })
 
