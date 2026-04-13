@@ -4,20 +4,6 @@ Vincent's Agent Skills
 
 ## Skill List
 
-Download skill:
-
-```bash
-# e.g. npx @vince-gamer/skills download ncmdump
-# Default save path: cwd(current work directory)/<skill-name>
-npx @vince-gamer/skills download <skill_name>
-
-# custom path
-npx @vince-gamer/skills download <skill_name> --save-path ./xxx
-
-# use mirror of raw.githubusercontent.com
-npx @vince-gamer/skills download <skill_name> --mirror https://xxx
-```
-
 - [fast-dirpy](./skills/fast-dirpy/README.md)
 - [discipline](./skills/discipline/README.md)
 - [weather](./skills/weather/README.md)
@@ -29,6 +15,27 @@ npx @vince-gamer/skills download <skill_name> --mirror https://xxx
 - [heihua(互联网黑话)](./heihua/README.md)
 
 More skills are coming soon.
+
+## Skill Download CLI
+
+Usage: `npx @vince-gamer/skills --help`
+
+List available skills: `npx @vince-gamer/skills lisst`
+
+Download skills:
+
+```bash
+# e.g. npx @vince-gamer/skills download ncmdump
+#
+# Default save path: cwd(current work directory)/<skill-name>
+npx @vince-gamer/skills download <skill_name>
+
+# custom path
+npx @vince-gamer/skills download <skill_name> --save-path ./xxx
+
+# use mirror of raw.githubusercontent.com
+npx @vince-gamer/skills download <skill_name> --mirror https://xxx
+```
 
 ## License
 
