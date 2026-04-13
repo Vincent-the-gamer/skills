@@ -2,7 +2,6 @@ import cac, { CAC } from "cac";
 import pkgJson from '../package.json'
 import restoreCursor from 'restore-cursor'
 import { logger } from "./utils/logger";
-import axios from "./utils/axios";
 import { downloadSkillFromGitHub } from "./utils/github";
 
 const cli: CAC = cac("skills")

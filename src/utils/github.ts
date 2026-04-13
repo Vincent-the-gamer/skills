@@ -24,17 +24,14 @@ export async function downloadSkillFromGitHub(filePath: string, savePath: string
       return item.path.startsWith(filePath)
     });
 
-    // 跳过第一个元素（通常是目录本身）
-    const filesToDownload = skillFiles.slice(1, skillFiles.length);
-
-    console.log(`${filesToDownload.length} files found to download.`);
+    logger.info(`${skillFiles.length} files found to download.`);
 
     if(mirror?.endsWith('/')) {
       mirror = mirror.slice(0, -1);
     }
 
     // 创建所有下载任务的 Promise 数组
-    const downloadPromises = filesToDownload.map(async (file: any) => {
+    const downloadPromises = skillFiles.map(async (file: any) => {
       const url = `${mirror ?? 'https://raw.githubusercontent.com'}/Vincent-the-gamer/skills/${branch}/${file.path}`;
 
       // 构建完整的本地保存路径
@@ -50,6 +47,11 @@ export async function downloadSkillFromGitHub(filePath: string, savePath: string
           'Accept': 'application/vnd.github.v3.raw'
         }
       });
+
+      if (response.status === 404) {
+        logger.error(`GitHub content not found: ${url}`)
+        return Promise.reject(new Error(`GitHub content not found: ${url}`))
+      }
 
       // 确保目录存在
       const dirName = path.dirname(localFilePath);
@@ -71,7 +73,7 @@ export async function downloadSkillFromGitHub(filePath: string, savePath: string
     });
 
     // 等待所有文件下载完成
-    const results = await Promise.all(downloadPromises);
+    const results = await Promise.allSettled(downloadPromises);
 
     logger.success(`All files downloaded successfully, ${results.length} files in total.`);
     return results;
