@@ -11,7 +11,7 @@ license: Complete terms in LICENSE.txt
 
 ## 触发条件
 
-当用户提示Agent用**互联网黑话**说话时
+当用户提及**互联网黑话**相关词语时
 
 ## 禁用条件
 
