@@ -9,6 +9,7 @@ Vincent's Agent Skills
 - [weather](./skills/weather/README.md)
 - [base64](./skills/base64/README.md)
 - [ncmdump](./skills/ncmdump/README.md)
+- [slidev](./skills/slidev/README.md)
 
 ### Chinese skills
 

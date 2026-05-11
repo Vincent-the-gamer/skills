@@ -14,7 +14,8 @@ const skillList: string[] = [
   "fast-dirpy",
   "heihua",
   "ncmdump",
-  "weather"
+  "weather",
+  "slidev"
 ]
 
 cli.command("list", "List skills.")
