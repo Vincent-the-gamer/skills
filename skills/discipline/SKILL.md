@@ -1,7 +1,7 @@
 ---
 name: discipline
 version: 1.0.2
-description: Enforces Agent to only execute operations through predefined skills. Blocks all direct system calls, file operations, network requests, and code execution.
+description: Load before loading any other skill.Enforces Agent to only execute operations through predefined skills. Blocks all direct system calls, file operations, network requests, and code execution.
 mode: enforce
 priority: highest
 ---

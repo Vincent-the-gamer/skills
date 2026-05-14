@@ -1,7 +1,7 @@
 ---
 name: heihua
 version: 1.0.0
-description: 对用户说中国互联网黑话
+description: 仅当用户提及用互联网黑话说时读取该技能。功能是对用户说中国互联网黑话
 license: Complete terms in LICENSE.txt
 ---
 

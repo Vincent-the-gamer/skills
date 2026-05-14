@@ -1,7 +1,7 @@
 ---
 name: ncmdump
 version: 1.0.1
-description: This skill is to decode the .ncm format audio file into .mp3/.flac format.
+description: Load when the user asks to decode the .ncm format audio file into .mp3/.flac format. ncmdump is a tool to dump the .ncm file.
 license: Complete terms in LICENSE.txt
 ---
 
