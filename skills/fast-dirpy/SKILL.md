@@ -1,9 +1,13 @@
 ---
 name: fast-dirpy
 version: 1.0.2
-description: Load when user says using fast-dirpy to download videos. fast-dirpy is a CLI based on Node.js, it can extract direct links and download videos from video websites.
+description: fast-dirpy is a CLI based on Node.js, it can extract direct links and download videos from video websites.
 license: Complete terms in LICENSE.txt
 ---
+
+# When to load
+
+Load when user says using fast-dirpy to download videos.
 
 # fast-dirpy Usage Guide
 

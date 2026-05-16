@@ -5,6 +5,10 @@ description: Support encode file/text to base64 and decode base64 to file/text.
 license: Complete terms in LICENSE.txt
 ---
 
+# When to load
+
+Load when user says using base64 to encode/decode file/text.
+
 # Base64 Usage Guide
 
 ## Encode

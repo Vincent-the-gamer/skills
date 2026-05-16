@@ -1,9 +1,16 @@
 ---
 name: ncmdump
 version: 1.0.1
-description: Load when the user asks to decode the .ncm format audio file into .mp3/.flac format. ncmdump is a tool to dump the .ncm file.
+description: ncmdump is a tool to dump the .ncm file into .mp3/.flac format.
 license: Complete terms in LICENSE.txt
 ---
+
+# When to load
+
+load when:
+
+- the user say decode .ncm file into .mp3/.flac format.
+- the user say using ncmdump.
 
 # Guide
 
