@@ -1,7 +1,8 @@
 ---
 name: slidev-skill
 description: >-
-  Slidev presentation automation skill. Create, develop, export and manage Slidev 
+  Use when user wants to create, develop, export, or manage a Slidev presentation.
+  Create, develop, export and manage Slidev 
   presentations from markdown. Supports slide creation, theme customization, 
   animation configuration, PDF/PPTX/PNG export, live preview, and deployment. 
   Keywords: slidev, slides, presentation, markdown slides, slide deck, export pdf, 

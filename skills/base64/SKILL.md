@@ -1,13 +1,9 @@
 ---
 name: base64
 version: 1.0.0
-description: Support encode file/text to base64 and decode base64 to file/text.
+description: Support encode file/text to base64 and decode base64 to file/text. Use when the user say using base64 to encode/decode file/text.
 license: Complete terms in LICENSE.txt
 ---
-
-# When to load
-
-Load when user says using base64 to encode/decode file/text.
 
 # Base64 Usage Guide
 
