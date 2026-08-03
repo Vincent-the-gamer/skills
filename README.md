@@ -17,6 +17,11 @@ Vincent's Agent Skills
 
 More skills are coming soon.
 
+## Use skills in Zed
+
+Create `.agents/skills/<skill-name>` folder，then create a SKILL.md as entry file.
+
+
 ## Skill Download CLI
 
 Usage: `npx @vince-gamer/skills --help`

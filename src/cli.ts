@@ -15,7 +15,8 @@ const skillList: string[] = [
   "heihua",
   "ncmdump",
   "weather",
-  "slidev"
+  "slidev",
+  "writing-great-skills"
 ]
 
 cli.command("list", "List skills.")

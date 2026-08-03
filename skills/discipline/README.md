@@ -1,24 +1,13 @@
 # discipline
 
-> [!IMPORTANT]
-> This skill is for security and disables the most automation requests, so consider yourself if you need it.
+A pre-flight guardrail skill. Invoke it before work where the agent should be extra careful — it makes the agent gate every tool call through an explicit rule set.
 
-The skill that blocks dangerous operations like file system, network requests, etc.
+**How to use:** type `discipline` before a sensitive task. The agent reads the rules, then checks every action against them.
 
-This skill only allows the skills enabled in your Agent and skills whitelisted in `discipline` skill itself.
+The rules:
 
-add these into your Agent's persona/system prompts to use.
-
-> [!NOTE]
-> Tell something like this is OK. The prompt are not fixed words.
-
-```
-## Important
-
-- Before you control the computer, call discipline skill first, and understand the rules.
-
-```
-
-## Allowed Operations
-
-See [discipline skill](./SKILL.md)
+- Stay within what the user authorized — no scope creep
+- Read before writing or executing
+- Never run something you can't explain
+- Don't invent capabilities the user hasn't given you
+- Ask before any destructive file operation

@@ -1,241 +1,109 @@
 ---
 name: slidev-skill
-description: >-
-  Use when user wants to create, develop, export, or manage a Slidev presentation.
-  Create, develop, export and manage Slidev 
-  presentations from markdown. Supports slide creation, theme customization, 
-  animation configuration, PDF/PPTX/PNG export, live preview, and deployment. 
-  Keywords: slidev, slides, presentation, markdown slides, slide deck, export pdf, 
-  pptx, slide animation, slide theme, developer presentation.
+description: Slidev markdown presentation work — creating projects, authoring slides, configuring themes and animations, exporting to PDF/PPTX/PNG, and building for deploy.
 license: MIT
 metadata:
-  author: Slidev Assistant
-  version: 1.0.0
+  author: Vincent-the-gamer
+  version: 1.0.1
   created: 2026-05-03
-  last_reviewed: 2026-05-03
+  last_reviewed: 2026-08-03
   review_interval_days: 90
   dependencies:
-    - url: https://cn.sli.dev/guide/
+    - url: https://sli.dev/guide/
       name: Slidev Documentation
       type: docs
 ---
 
-# /slidev — Slidev Presentation Assistant
+# Slidev
 
-You are an expert Slidev presentation developer. Your job is to help users create,
-develop, and manage beautiful Markdown-based presentations using Slidev.
+Slidev turns markdown into slide decks: every slide is a `---`-separated section in `slides.md`. Use `scripts/slidev_manager.py` for project operations, and edit `slides.md` directly for content. The full syntax, frontmatter, and CLI reference is in [`references/slidev-syntax.md`](references/slidev-syntax.md).
 
-## Docs
+Slidev requires Node.js ≥ 22.0 and pnpm. Export to PDF/PPTX/PNG also needs `pnpm add -D playwright-chromium`.
 
-- [Slidev Documentation](https://cn.sli.dev/guide/)
+## Create
 
-## Template
+Scaffold a new project:
 
-https://github.com/Vincent-the-gamer/slidev-template
-
-## Trigger
-
-User invokes `/slidev` followed by their input:
-
-```
-/slidev Create a new presentation about AI development
-/slidev Export my slides to PDF
-/slidev Add animations to slide 3
-/slidev Change theme to seriph
-/slidev Build and deploy my presentation
+```bash
+python scripts/slidev_manager.py create <name> --theme <theme>
 ```
 
-## Core Capabilities
+This writes `package.json`, `slides.md` (starter deck), and `README.md` into `<name>/`.
 
-### 1. Project Creation
+**Done when** `pnpm install && pnpm dev` runs without error.
 
-- Initialize new Slidev projects with proper structure
-- Set up themes, fonts, and base configurations
-- Create slide templates for common use cases
+## Author
 
-### 2. Slide Development
+All slide content lives in `slides.md`. Slides are separated by `---` on its own line. Global frontmatter (theme, title) goes in the first frontmatter block; per-slide frontmatter (layout, class, transition) goes between a `---` separator and the slide content.
 
-- Write and edit slides.md content
-- Configure frontmatter (headmatter per slide, global config)
-- Apply layouts (cover, center, default, etc.)
-- Add code blocks with syntax highlighting
-- Insert diagrams (Mermaid, PlantUML)
-- Add mathematical formulas (LaTeX/KaTeX)
+To add or edit slides, modify `slides.md` directly. Run `slidev format` (or `python scripts/slidev_manager.py format`) to auto-format.
 
-### 3. Animation & Interactivity
+For the full syntax — code blocks, diagrams, math, layouts, presenter notes — see [`references/slidev-syntax.md`](references/slidev-syntax.md).
 
-- Configure click animations (v-click, v-after, v-clicks)
-- Set up motion effects with v-motion
-- Define slide transitions
-- Create presenter notes
+**Done when** the slide content matches the user's request and `slidev` dev server renders it.
 
-### 4. Theming & Styling
+## Style
 
-- Install and switch themes
-- Customize UnoCSS styles
-- Configure fonts and typography
-- Apply scoped CSS per slide
+Set the theme in the global frontmatter:
 
-### 5. Export & Distribution
-
-- Export to PDF, PPTX, PNG formats
-- Build static SPA for hosting
-- Configure export options (dark mode, click steps, ranges)
-
-### 6. Development Workflow
-
-- Start dev server with hot reload
-- Format slides
-- Validate markdown syntax
-- Manage project dependencies
-
-## Slidev Quick Reference
-
-### Basic Syntax
-
-```markdown
----
-theme: default
-title: My Presentation
----
-
-# Slide 1 Title
-
-Content here
-
----
-
-# Slide 2
-
-- Bullet point 1
-- Bullet point 2
-
----
-
-layout: center
-class: text-center
-
----
-
-# Centered Slide
-```
-
-### Frontmatter Options
-
-- `theme`: Theme name (default, seriph, etc.)
-- `title`: Presentation title
-- `layout`: Slide layout (cover, center, default, etc.)
-- `background`: Background image/color
-- `class`: CSS classes to apply
-- `transition`: Slide transition effect
-- `clicks`: Total click count for animations
-
-### Code Blocks
-
-````markdown
-```ts
-console.log("Hello Slidev");
-```
-````
-
-```ts {1|2|3}
-// Line-by-line highlighting
-const a = 1;
-const b = 2;
-```
-
-````
-
-### Animations
-```markdown
-<v-click>Appears on first click</v-click>
-<div v-click>Also appears on click</div>
-<div v-after>Appears with previous</div>
-
-<v-clicks>
-- Item 1
-- Item 2
-- Item 3
-</v-clicks>
-````
-
-### CLI Commands
-
-- `slidev` - Start dev server
-- `slidev export` - Export to PDF
-- `slidev export --format pptx` - Export to PPTX
-- `slidev export --format png` - Export as images
-- `slidev build` - Build static site
-- `slidev format` - Format slides.md
-
-## Workflow
-
-1. **Analyze Request**: Understand what the user wants to do with Slidev
-2. **Check Context**: Look for existing Slidev project in current/workspace directory
-3. **Execute Action**: Perform the requested operation
-4. **Verify Result**: Ensure the operation completed successfully
-5. **Provide Next Steps**: Guide user on what to do next
-
-## Common Tasks
-
-### Create New Presentation
-
-```python
-# Use scripts/create_project.py
-slidev create-project --name my-talk --theme default
-```
-
-### Add Slides
-
-- Edit `slides.md` directly
-- Use `---` to separate slides
-- Add frontmatter for per-slide config
-
-### Configure Theme
-
-```markdown
+```yaml
 ---
 theme: seriph
 colorSchema: dark
 ---
 ```
 
-### Export Presentation
+Built-in themes: `default`, `seriph`. Install additional themes with `pnpm add @slidev/theme-<name>`. For custom styles per slide, use scoped `<style>` blocks. See [`references/slidev-syntax.md`](references/slidev-syntax.md) for the styling reference.
+
+**Done when** the theme is set in frontmatter (and installed if external), and renders correctly in the dev server.
+
+## Animate
+
+Click animations use Vue directives in `slides.md`:
+
+- `<v-click>` — content appears on the next click
+- `<v-after>` — appears with the previous click
+- `<v-clicks>` — each child appears on a successive click
+- `v-motion` — motion effects (fade, slide, zoom)
+
+Line-by-line code highlighting uses `{1|2|3}` after the language tag. See [`references/slidev-syntax.md`](references/slidev-syntax.md) for the full animation syntax.
+
+**Done when** each requested animation triggers correctly in the dev server.
+
+## Export
 
 ```bash
-# PDF
-slidev export
-
-# PPTX
-slidev export --format pptx
-
-# With animations
-slidev export --with-clicks
-
-# Dark mode
-slidev export --dark
+python scripts/slidev_manager.py export                          # PDF (default)
+python scripts/slidev_manager.py export --format pptx             # PPTX
+python scripts/slidev_manager.py export --format png              # PNG images
+python scripts/slidev_manager.py export --with-clicks             # render click steps as pages
+python scripts/slidev_manager.py export --dark                    # dark mode
+python scripts/slidev_manager.py export --range 1,3-5,7           # specific slides
 ```
 
-### Deploy
+PDF and PPTX output is static — use `--with-clicks` to render each click step as a separate page. For full interactivity, build the SPA instead.
+
+**Done when** the output file exists and the command exits with code 0.
+
+## Build
 
 ```bash
-# Build static site
-slidev build
-
-# Output to dist/ folder ready for hosting
+python scripts/slidev_manager.py build [--base /subpath/]
 ```
 
-## Important Notes
+Outputs to `dist/` — a static SPA that retains full interactivity. Host on any static host (Netlify, Vercel, GitHub Pages).
 
-- Slidev requires Node.js >= 22.0
-- Uses pnpm by default (recommended over npm/yarn)
-- Export requires playwright-chromium: `pnpm add -D playwright-chromium`
-- Interactive features don't work in exported PDF/PPTX
-- For full interactivity, host the built SPA
+**Done when** `dist/` contains `index.html` and the command exits with code 0.
 
-## Resources
+## Script
 
-- Documentation: https://cn.sli.dev/guide/
-- Syntax Guide: `references/syntax-guide.md`
-- Export Guide: `references/export-guide.md`
-- Animation Guide: `references/animation-guide.md`
+`scripts/slidev_manager.py` handles all Slidev operations:
+
+| Command | Purpose |
+|---|---|
+| `create <name> [--theme]` | Scaffold a new project |
+| `dev [--port]` | Start dev server |
+| `export [--format] [--output] [--with-clicks] [--dark] [--range]` | Export slides |
+| `build [--base]` | Build static SPA |
+| `format` | Format `slides.md` |
+| `info` | Show slide count and metadata |
