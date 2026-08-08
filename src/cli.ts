@@ -13,10 +13,11 @@ const skillList: string[] = [
   "discipline",
   "fast-dirpy",
   "heihua",
-  "ncmdump",
+  "ncd",
   "weather",
   "slidev",
-  "writing-great-skills"
+  "writing-great-skills",
+  "viral-writer"
 ]
 
 cli.command("list", "List skills.")
