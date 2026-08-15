@@ -51,9 +51,6 @@ ncd <SRC_DIR> [OUT_DIR]
 
 Each `.ncm` file in `SRC_DIR` is converted to `<filename>.mp3` in `OUT_DIR`.
 
-> [!CAUTION]
-> ncd will **delete non-`.ncm` files** from `SRC_DIR`. Put only `.ncm` files in the source directory, or use a dedicated directory.
-
 ## Example
 
 ```bash
