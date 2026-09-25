@@ -26,7 +26,8 @@ npx skills@latest add Vincent-the-gamer/skills
 
 ### Chinese skills
 
-- [heihua(互联网黑话)](./heihua/README.md)
+- [heihua(互联网黑话)](./skills/heihua/README.md)
+- [kiseki-lang(轨言轨语)](./skills/kiseki-lang/README.md)
 
 More skills are coming soon.
 
