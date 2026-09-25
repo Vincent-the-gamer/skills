@@ -5,6 +5,12 @@ Vincent's Agent Skills
 > [!TIP]
 > Hint: `disable-model-invocation: true` means that the user need to trigger the skill manually, the agents won't trigger it automatically.
 
+## Installation
+
+```bash
+npx skills@latest add Vincent-the-gamer/skills
+```
+
 ## Skill List
 
 - [fast-dirpy](./skills/fast-dirpy/README.md)
