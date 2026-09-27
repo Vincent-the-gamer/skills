@@ -92,3 +92,7 @@ A single JSON object is printed to stdout; errors go to stderr and the process e
 - `decision` — the most likely label (the pick for `choice`/`score`, or `是`/`否` for `noul`), with its `probability`.
 - `probabilities` — the full distribution, in the order you passed the options.
 - `score` — expected level for `score` questions, 0-based (add 1 for a 1–N scale). Present for `score` only.
+
+## Jev CLI
+
+`scripts/jev.mjs` can be used as a standalone CLI(requires Node.js).
