@@ -11,6 +11,6 @@ export default defineConfig({
   // compatible with __dirname in cjs and import.meta.url in mjs.
   shims: true,
   deps: {
-    alwaysBundle: ["axios"]
+    alwaysBundle: ["axios", "cac"],
   }
 })
