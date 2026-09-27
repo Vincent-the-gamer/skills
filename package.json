@@ -1,0 +1,32 @@
+{
+  "name": "@vince-gamer/skills",
+  "version": "1.0.0",
+  "description": "Vincent's Agent Skills",
+  "author": "Vincent-the-gamer",
+  "license": "Apache-2.0",
+  "scripts": {
+    "tsx": "tsx",
+    "build": "tsdown",
+    "dep": "taze major -I"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.6.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "taze": "^21.1.0",
+    "tsdown": "^0.23.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cac": "^7.0.0"
+  }
+}

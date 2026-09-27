@@ -16,9 +16,9 @@ npx skills@latest add Vincent-the-gamer/skills
 - [fast-dirpy](./skills/fast-dirpy/README.md)
 - [discipline](./skills/discipline/README.md)
 - [weather](./skills/weather/README.md)
-- [base64](./skills/base64/README.md)
 - [ncd](./skills/ncd/README.md)
 - [slidev](./skills/slidev/README.md)
+- [jev](./skills/jev/README.md)
 
 ### Skills from Matt Pocock
 
