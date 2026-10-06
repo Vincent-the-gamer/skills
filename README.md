@@ -22,7 +22,7 @@ npx skills@latest add Vincent-the-gamer/skills
 
 ### Skills from Matt Pocock
 
-- [writing-great-skills](./skills/writing-great-skills/README.md)
+- [writing-for-agents](./skills/writing-for-agents/README.md)
 
 ### Chinese skills
 
