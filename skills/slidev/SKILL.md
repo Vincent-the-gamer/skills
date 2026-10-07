@@ -1,109 +1,190 @@
 ---
-name: slidev-skill
-description: Slidev markdown presentation work — creating projects, authoring slides, configuring themes and animations, exporting to PDF/PPTX/PNG, and building for deploy.
-license: MIT
-metadata:
-  author: Vincent-the-gamer
-  version: 1.0.1
-  created: 2026-05-03
-  last_reviewed: 2026-08-03
-  review_interval_days: 90
-  dependencies:
-    - url: https://sli.dev/guide/
-      name: Slidev Documentation
-      type: docs
+name: slidev
+description: Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
 ---
 
-# Slidev
+# Slidev - Presentation Slides for Developers
 
-Slidev turns markdown into slide decks: every slide is a `---`-separated section in `slides.md`. Use `scripts/slidev_manager.py` for project operations, and edit `slides.md` directly for content. The full syntax, frontmatter, and CLI reference is in [`references/slidev-syntax.md`](references/slidev-syntax.md).
+Web-based slides maker built on Vite, Vue, and Markdown.
 
-Slidev requires Node.js ≥ 22.0 and pnpm. Export to PDF/PPTX/PNG also needs `pnpm add -D playwright-chromium`.
+## When to Use
 
-## Create
+- Technical presentations or slidedecks with live code examples
+- Syntax-highlighted code snippets with animations
+- Interactive demos (Monaco editor, runnable code)
+- Mathematical equations (LaTeX) or diagrams (Mermaid, PlantUML)
+- Record presentations with presenter notes
+- Export to PDF, PPTX, or host as SPA
+- Code walkthroughs for developer talks or workshops
 
-Scaffold a new project:
+## Quick Start
 
 ```bash
-python scripts/slidev_manager.py create <name> --theme <theme>
+pnpm create slidev    # Create project
+pnpm run dev          # Start dev server (opens http://localhost:3030)
+pnpm run build        # Build static SPA
+pnpm run export       # Export to PDF (requires playwright-chromium)
 ```
 
-This writes `package.json`, `slides.md` (starter deck), and `README.md` into `<name>/`.
+**Verify**: After `pnpm run dev`, confirm slides load at `http://localhost:3030`. After `pnpm run export`, check the output PDF exists in the project root.
 
-**Done when** `pnpm install && pnpm dev` runs without error.
+## Basic Syntax
 
-## Author
-
-All slide content lives in `slides.md`. Slides are separated by `---` on its own line. Global frontmatter (theme, title) goes in the first frontmatter block; per-slide frontmatter (layout, class, transition) goes between a `---` separator and the slide content.
-
-To add or edit slides, modify `slides.md` directly. Run `slidev format` (or `python scripts/slidev_manager.py format`) to auto-format.
-
-For the full syntax — code blocks, diagrams, math, layouts, presenter notes — see [`references/slidev-syntax.md`](references/slidev-syntax.md).
-
-**Done when** the slide content matches the user's request and `slidev` dev server renders it.
-
-## Style
-
-Set the theme in the global frontmatter:
-
-```yaml
+```md
 ---
-theme: seriph
-colorSchema: dark
+theme: default
+title: My Presentation
 ---
+
+# First Slide
+
+Content here
+
+---
+
+# Second Slide
+
+More content
+
+<!--
+Presenter notes go here
+-->
 ```
 
-Built-in themes: `default`, `seriph`. Install additional themes with `pnpm add @slidev/theme-<name>`. For custom styles per slide, use scoped `<style>` blocks. See [`references/slidev-syntax.md`](references/slidev-syntax.md) for the styling reference.
+- `---` separates slides
+- First frontmatter = headmatter (deck config)
+- HTML comments = presenter notes
 
-**Done when** the theme is set in frontmatter (and installed if external), and renders correctly in the dev server.
+## Core References
 
-## Animate
+| Topic | Description | Reference |
+|-------|-------------|-----------|
+| Markdown Syntax | Slide separators, frontmatter, notes, code blocks | [core-syntax](references/core-syntax.md) |
+| Animations | v-click, v-clicks, motion, transitions | [core-animations](references/core-animations.md) |
+| Headmatter | Deck-wide configuration options | [core-headmatter](references/core-headmatter.md) |
+| Frontmatter | Per-slide configuration options | [core-frontmatter](references/core-frontmatter.md) |
+| CLI Commands | Dev, build, export, theme commands | [core-cli](references/core-cli.md) |
+| Components | Built-in Vue components | [core-components](references/core-components.md) |
+| Layouts | Built-in slide layouts | [core-layouts](references/core-layouts.md) |
+| Exporting | PDF, PPTX, PNG export options | [core-exporting](references/core-exporting.md) |
+| Hosting | Build and deploy to various platforms | [core-hosting](references/core-hosting.md) |
+| Global Context | $nav, $slidev, composables API | [core-global-context](references/core-global-context.md) |
 
-Click animations use Vue directives in `slides.md`:
+## Feature Reference
 
-- `<v-click>` — content appears on the next click
-- `<v-after>` — appears with the previous click
-- `<v-clicks>` — each child appears on a successive click
-- `v-motion` — motion effects (fade, slide, zoom)
+### Code & Editor
 
-Line-by-line code highlighting uses `{1|2|3}` after the language tag. See [`references/slidev-syntax.md`](references/slidev-syntax.md) for the full animation syntax.
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Line highlighting | `` ```ts {2,3} `` | [code-line-highlighting](references/code-line-highlighting.md) |
+| Click-based highlighting | `` ```ts {1\|2-3\|all} `` | [code-line-highlighting](references/code-line-highlighting.md) |
+| Line numbers | `lineNumbers: true` or `{lines:true}` | [code-line-numbers](references/code-line-numbers.md) |
+| Scrollable code | `{maxHeight:'100px'}` | [code-max-height](references/code-max-height.md) |
+| Code tabs | `::code-group` (requires `comark: true`) | [code-groups](references/code-groups.md) |
+| Monaco editor | `` ```ts {monaco} `` | [editor-monaco](references/editor-monaco.md) |
+| Run code | `` ```ts {monaco-run} `` | [editor-monaco-run](references/editor-monaco-run.md) |
+| Edit files | `<<< ./file.ts {monaco-write}` | [editor-monaco-write](references/editor-monaco-write.md) |
+| Code animations | `` ````md magic-move `` | [code-magic-move](references/code-magic-move.md) |
+| TypeScript types | `` ```ts twoslash `` | [code-twoslash](references/code-twoslash.md) |
+| Import code | `<<< @/snippets/file.js` | [code-import-snippet](references/code-import-snippet.md) |
 
-**Done when** each requested animation triggers correctly in the dev server.
+### Diagrams & Math
 
-## Export
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Mermaid diagrams | `` ```mermaid `` | [diagram-mermaid](references/diagram-mermaid.md) |
+| PlantUML diagrams | `` ```plantuml `` | [diagram-plantuml](references/diagram-plantuml.md) |
+| LaTeX math | `$inline$` or `$$block$$` | [diagram-latex](references/diagram-latex.md) |
 
-```bash
-python scripts/slidev_manager.py export                          # PDF (default)
-python scripts/slidev_manager.py export --format pptx             # PPTX
-python scripts/slidev_manager.py export --format png              # PNG images
-python scripts/slidev_manager.py export --with-clicks             # render click steps as pages
-python scripts/slidev_manager.py export --dark                    # dark mode
-python scripts/slidev_manager.py export --range 1,3-5,7           # specific slides
-```
+### Layout & Styling
 
-PDF and PPTX output is static — use `--with-clicks` to render each click step as a separate page. For full interactivity, build the SPA instead.
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Canvas size | `canvasWidth`, `aspectRatio` | [layout-canvas-size](references/layout-canvas-size.md) |
+| Zoom slide | `zoom: 0.8` | [layout-zoom](references/layout-zoom.md) |
+| Scale elements | `<Transform :scale="0.5">` | [layout-transform](references/layout-transform.md) |
+| Layout slots | `::right::`, `::default::` | [layout-slots](references/layout-slots.md) |
+| Scoped CSS | `<style>` in slide | [style-scoped](references/style-scoped.md) |
+| Global layers | `global-top.vue`, `global-bottom.vue` | [layout-global-layers](references/layout-global-layers.md) |
+| Draggable elements | `v-drag`, `<v-drag>` | [layout-draggable](references/layout-draggable.md) |
+| Icons | `<mdi-icon-name />` | [style-icons](references/style-icons.md) |
 
-**Done when** the output file exists and the command exits with code 0.
+### Animation & Interaction
 
-## Build
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Click animations | `v-click`, `<v-clicks>` | [core-animations](references/core-animations.md) |
+| Rough markers | `v-mark.underline`, `v-mark.circle` | [animation-rough-marker](references/animation-rough-marker.md) |
+| Drawing mode | Press `C` or config `drawings:` | [animation-drawing](references/animation-drawing.md) |
+| Direction styles | `forward:delay-300` | [style-direction](references/style-direction.md) |
+| Note highlighting | `[click]` in notes | [animation-click-marker](references/animation-click-marker.md) |
 
-```bash
-python scripts/slidev_manager.py build [--base /subpath/]
-```
+### Syntax Extensions
 
-Outputs to `dist/` — a static SPA that retains full interactivity. Host on any static host (Netlify, Vercel, GitHub Pages).
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Comark syntax | `comark: true` + `{style="color:red"}` | [syntax-comark](references/syntax-comark.md) |
+| Block frontmatter | `` ```yaml `` instead of `---` | [syntax-block-frontmatter](references/syntax-block-frontmatter.md) |
+| Import slides | `src: ./other.md` | [syntax-importing-slides](references/syntax-importing-slides.md) |
+| Merge frontmatter | Main entry wins | [syntax-frontmatter-merging](references/syntax-frontmatter-merging.md) |
 
-**Done when** `dist/` contains `index.html` and the command exits with code 0.
+### Presenter & Recording
 
-## Script
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Recording | Press `G` for camera | [presenter-recording](references/presenter-recording.md) |
+| Timer | `duration: 30min`, `timer: countdown` | [presenter-timer](references/presenter-timer.md) |
+| Remote control | `slidev --remote` | [presenter-remote](references/presenter-remote.md) |
+| Ruby text | `notesAutoRuby:` | [presenter-notes-ruby](references/presenter-notes-ruby.md) |
 
-`scripts/slidev_manager.py` handles all Slidev operations:
+### Export & Build
 
-| Command | Purpose |
-|---|---|
-| `create <name> [--theme]` | Scaffold a new project |
-| `dev [--port]` | Start dev server |
-| `export [--format] [--output] [--with-clicks] [--dark] [--range]` | Export slides |
-| `build [--base]` | Build static SPA |
-| `format` | Format `slides.md` |
-| `info` | Show slide count and metadata |
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Export options | `slidev export` | [core-exporting](references/core-exporting.md) |
+| Build & deploy | `slidev build` | [core-hosting](references/core-hosting.md) |
+| Build with PDF | `download: true` | [build-pdf](references/build-pdf.md) |
+| Cache images | Automatic for remote URLs | [build-remote-assets](references/build-remote-assets.md) |
+| OG image | `seoMeta.ogImage` or `og-image.png` | [build-og-image](references/build-og-image.md) |
+| SEO tags | `seoMeta:` | [build-seo-meta](references/build-seo-meta.md) |
+
+**Export prerequisite**: `pnpm add -D playwright-chromium` is required for PDF/PPTX/PNG export. If export fails with a browser error, install this dependency first.
+
+### Editor & Tools
+
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Side editor | Click edit icon | [editor-side](references/editor-side.md) |
+| VS Code extension | Install `antfu.slidev` | [editor-vscode](references/editor-vscode.md) |
+| Prettier | `prettier-plugin-slidev` | [editor-prettier](references/editor-prettier.md) |
+| Eject theme | `slidev theme eject` | [tool-eject-theme](references/tool-eject-theme.md) |
+| MCP server (AI agents) | `http://localhost:<port>/__mcp` or `slidev mcp` | [tool-mcp](references/tool-mcp.md) |
+
+### Lifecycle & API
+
+| Feature | Usage | Reference |
+|---------|-------|-----------|
+| Slide hooks | `onSlideEnter()`, `onSlideLeave()` | [api-slide-hooks](references/api-slide-hooks.md) |
+| Navigation API | `$nav`, `useNav()` | [core-global-context](references/core-global-context.md) |
+
+## Common Layouts
+
+| Layout | Purpose |
+|--------|---------|
+| `cover` | Title/cover slide |
+| `center` | Centered content |
+| `default` | Standard slide |
+| `two-cols` | Two columns (use `::right::`) |
+| `two-cols-header` | Header + two columns |
+| `image` / `image-left` / `image-right` | Image layouts |
+| `iframe` / `iframe-left` / `iframe-right` | Embed URLs |
+| `quote` | Quotation |
+| `section` | Section divider |
+| `fact` / `statement` | Data/statement display |
+| `intro` / `end` | Intro/end slides |
+
+## Resources
+
+- Documentation: https://sli.dev
+- Theme Gallery: https://sli.dev/resources/theme-gallery
+- Showcases: https://sli.dev/resources/showcases
