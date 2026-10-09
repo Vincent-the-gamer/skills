@@ -14,7 +14,6 @@ npx skills@latest add Vincent-the-gamer/skills
 ## Skill List
 
 - [fast-dirpy](./skills/fast-dirpy/README.md)
-- [discipline](./skills/discipline/README.md)
 - [weather](./skills/weather/README.md)
 - [ncd](./skills/ncd/README.md)
 - [slidev](./skills/slidev/README.md)
