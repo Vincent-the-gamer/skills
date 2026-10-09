@@ -31,9 +31,9 @@ npx skills@latest add Vincent-the-gamer/skills
 
 More skills are coming soon.
 
-## Use skills in Zed
+## Harness
 
-Create `.agents/skills/<skill-name>` folder，then create a SKILL.md as entry file.
+See [AGENTS.md](./AGENTS.md), we don't want LLM/Agent to commit, push, create pull request, issues, discussions..., etc. without a review of human.
 
 ## License
 
