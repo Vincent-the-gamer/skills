@@ -19,6 +19,7 @@ npx skills@latest add Vincent-the-gamer/skills
 - [ncd](./skills/ncd/README.md)
 - [slidev](./skills/slidev/README.md)
 - [jev](./skills/jev/README.md)
+- [novnc](./skills/novnc/README.md)
 
 ### Skills from Matt Pocock
 
