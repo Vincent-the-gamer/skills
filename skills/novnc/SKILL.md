@@ -29,7 +29,9 @@ Done when you have a live `host:port` **target** to bridge to.
 
 ## 2. Set up websockify
 
-Get the websockify folder and clone noVNC into it:
+If `websockify-js/websockify` already exists with a `noVNC/` folder and installed `node_modules`, the setup is in place — skip to step 3.
+
+Otherwise, get the websockify folder and clone noVNC into it:
 
 ```bash
 git clone --depth 1 https://github.com/novnc/websockify-js.git
@@ -75,4 +77,4 @@ cd websockify-js/websockify && node websockify.js --web noVNC --target-option al
 
 `--target-option allowLoopback=yes` permits a `localhost` target, which websockify blocks by default.
 
-Start it in the background and report the PID. Done when the browser opens `http://localhost:<web-port>/vnc.html` and connects to the **target**.
+Start it in the background and report the PID. Done when the browser opens `http://localhost:<web-port>` — that root URL is the noVNC page — and connects to the **target**.
