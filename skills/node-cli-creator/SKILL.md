@@ -1,11 +1,11 @@
 ---
 name: node-cli-creator
-description: Build a Node.js CLI in TypeScript — commands parsed with cac, code bundled with tsdown, deps updated with taze, source run with tsx. Use when the user wants to create, develop, or add features to a Node.js command-line tool or CLI project.
+description: Build a Node.js CLI in TypeScript — commands parsed with cac, code built with tsdown, deps updated with taze, source run with tsx. Use when the user wants to create, develop, or add features to a Node.js command-line tool or CLI project.
 ---
 
 # Node CLI Creator
 
-Build the Node.js CLI the user asks for, in TypeScript. The user almost always arrives with a feature request — "build me a CLI that does X" — not a request to scaffold an empty project. So the scaffold below is only the setup; the deliverable is the CLI itself: its commands, options, and behavior. Steps 0–7 stand the project up, Step 8 is the real work.
+Build the Node.js CLI the user asks for, in TypeScript. The user almost always arrives with a feature request — "build me a CLI that does X" — not a request to scaffold an empty project. So the scaffold below is only the setup; the deliverable is the CLI itself: its commands, options, and behavior. Steps 0–8 stand the project up, Step 9 is the real work.
 
 Stack:
 
@@ -30,7 +30,16 @@ Detect which managers are installed (`npm`, `pnpm`, `yarn`, `bun`). If `npm` is 
 
 **Done when** you know which manager every command will use.
 
-## Step 2 — Initialize the project
+## Step 2 — Decide how the CLI ships
+
+Ask the user how the CLI reaches its users. The answer decides whether dependencies stay external or get bundled, and it drives the tsdown config in Step 6:
+
+- **Publish to npm** — users run it via `npx <bin>`, a global install, or as a dependency. npm ships your `package.json` alongside the code, so everything under `dependencies` (including `cac`) is installed automatically. Keep dependencies **external** — this is tsdown's default, so no extra config is needed.
+- **Local build only** — the built file is handed off on its own (copied elsewhere, run where `<pm> install` won't run). Nothing installs the dependencies, so the output must be **self-contained**: bundle every runtime dependency with `deps.alwaysBundle`.
+
+**Done when** the distribution path is known.
+
+## Step 3 — Initialize the project
 
 Create the target directory if the user named a new one, then initialize a package:
 
@@ -52,9 +61,9 @@ Add entries for anything else the project generates (env files, logs, caches).
 
 **Done when** `package.json` exists with `"type": "module"`, and `.gitignore` ignores `node_modules`, `dist`, and `.DS_Store`.
 
-## Step 3 — Install dependencies
+## Step 4 — Install dependencies
 
-`cac` is a **production** dependency — it gets bundled into the output:
+`cac` is a **production** dependency: on the npm path npm installs it for consumers, and on the local-build path tsdown inlines it from `node_modules`:
 
 ```bash
 <pm> add cac
@@ -77,7 +86,7 @@ The toolchain is all **devDependencies**:
 
 **Done when** `cac` is under `dependencies` and the other five packages are under `devDependencies`.
 
-## Step 4 — Configure taze
+## Step 5 — Configure taze
 
 Create `taze.config.ts`:
 
@@ -102,7 +111,7 @@ Add the update script to `package.json`:
 
 **Done when** `taze.config.ts` exists and the `dep` script runs `taze major -I`.
 
-## Step 5 — Configure TypeScript and tsdown
+## Step 6 — Configure TypeScript and tsdown
 
 Create `tsconfig.json`:
 
@@ -124,7 +133,7 @@ Create `tsconfig.json`:
 }
 ```
 
-Create `tsdown.config.ts`. Bundling `cac` in produces one self-contained, executable file:
+Create `tsdown.config.ts`:
 
 ```ts
 import { defineConfig } from "tsdown";
@@ -137,17 +146,22 @@ export default defineConfig({
   minify: true,
   // compatible with __dirname in cjs and import.meta.url in mjs.
   shims: true,
+});
+```
+
+This is the whole config for the **publish to npm** path: tsdown externalizes everything under `dependencies` by default, and npm installs those for the user. On the **local build only** path, add `deps` so the runtime dependencies are inlined and the file runs without `node_modules`:
+
+```ts
   deps: {
     alwaysBundle: ["cac"],
   },
-});
 ```
 
 Point `entry` at the real entry file if it is not `src/index.ts`.
 
-**Done when** `tsconfig.json` and `tsdown.config.ts` exist and `entry` matches the file from Step 6.
+**Done when** `tsconfig.json` and `tsdown.config.ts` exist and `entry` matches the file from Step 7.
 
-## Step 6 — Write the entry point
+## Step 7 — Write the entry point
 
 Create `src/index.ts`. The shebang keeps the bundled file runnable:
 
@@ -175,6 +189,7 @@ Then wire the CLI into `package.json`. `<bin-name>` is the command users type; t
 ```json
 {
   "bin": { "<bin-name>": "dist/index.mjs" },
+  "files": ["dist"],
   "scripts": {
     "build": "tsdown",
     "dev": "tsx src/index.ts"
@@ -182,9 +197,11 @@ Then wire the CLI into `package.json`. `<bin-name>` is the command users type; t
 }
 ```
 
+The `files` array matters on the **publish to npm** path: npm falls back to `.gitignore` (which excludes `dist`) when choosing what to ship, so without it your bundle is left out of the package.
+
 **Done when** `src/index.ts` parses at least one command, and `package.json` has a matching `bin` entry plus `build`/`dev` scripts.
 
-## Step 7 — Verify the scaffold
+## Step 8 — Verify the scaffold
 
 The structure should match:
 
@@ -207,8 +224,8 @@ node dist/index.mjs --help
 
 **Done when** the build succeeds, the bundle exists in `dist/`, and `--help` prints the command's usage.
 
-## Step 8 — Build the requested CLI
+## Step 9 — Build the requested CLI
 
-This is the point of the skill. Replace the placeholder command from Step 6 with the real commands from Step 0: implement their options and arguments, input and output, and the files or APIs they touch. Report errors with clear messages instead of letting them crash raw. When the feature pulls in more bundled dependencies, add them to `deps.alwaysBundle` in `tsdown.config.ts`; add more entry files to `entry` if needed.
+This is the point of the skill. Replace the placeholder command from Step 7 with the real commands from Step 0: implement their options and arguments, input and output, and the files or APIs they touch. Report errors with clear messages instead of letting them crash raw. On the local-build path, add each new runtime dependency to `deps.alwaysBundle` in `tsdown.config.ts`; add more entry files to `entry` if needed.
 
 **Done when** the CLI performs every requested command, the build succeeds, and a smoke run of each command behaves as specified.
