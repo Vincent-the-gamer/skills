@@ -79,7 +79,7 @@ Then add the script to `package.json`:
 ```json
 {
   "scripts": {
-    "dep": "taze major -I"
+    "dep": "taze major"
   }
 }
 ```

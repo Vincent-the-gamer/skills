@@ -101,15 +101,17 @@ export default defineConfig({
 
 Add the update script to `package.json`:
 
+Default command is `taze major`, if the user create a monorepo, install taze in root package and use `taze major -r`.
+
 ```json
 {
   "scripts": {
-    "dep": "taze major -I"
+    "dep": "taze major"
   }
 }
 ```
 
-**Done when** `taze.config.ts` exists and the `dep` script runs `taze major -I`.
+**Done when** `taze.config.ts` exists and the `dep` script runs `taze major`.
 
 ## Step 6 — Configure TypeScript and tsdown
 
