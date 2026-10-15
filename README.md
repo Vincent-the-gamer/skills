@@ -33,6 +33,14 @@ npx skills@latest add Vincent-the-gamer/skills
 
 More skills are coming soon.
 
+### Third-party skills
+
+> [!NOTE]
+> This part lists the skills I'll probably use, it's no need to add in my list, just add links to them.
+
+- [taste-skill](https://github.com/Leonxlnx/taste-skill)
+- [shuorenhua](https://github.com/MrGeDiao/shuorenhua)
+
 ## Harness
 
 See [AGENTS.md](./AGENTS.md), we don't want LLM/Agent to commit, push, create pull request, issues, discussions..., etc. without a review of human.
