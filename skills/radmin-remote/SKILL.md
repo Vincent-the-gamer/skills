@@ -44,7 +44,7 @@ Start-Process "C:\Program Files (x86)\Radmin Viewer 3\Radmin.exe" `
 
 ### 3. 找到认证对话框
 
-**按进程找，不要按标题找。** 本机 Radmin 是中文版，标题 `Radmin 安全对话: <IP>` 里的中文经 `GetWindowText` 取回来是乱码，用 `FindWindow` 按标题匹配会返回 `0x0`——而 `Get-Process` 显示的 `MainWindowTitle` 有时是空的，两种直觉写法都会失败。
+**按进程找，不要按标题找。** 电脑中的 Radmin 如果是中文版的话，标题 `Radmin 安全对话: <IP>` 里的中文经 `GetWindowText` 取回来是乱码，用 `FindWindow` 按标题匹配会返回 `0x0`——而 `Get-Process` 显示的 `MainWindowTitle` 有时是空的，两种直觉写法都会失败。
 
 判据：Radmin 进程名下**可见**的、窗口类为 `#32770`（Win32 对话框类）的那个窗口。
 
