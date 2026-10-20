@@ -1,6 +1,8 @@
-# skills
-
-Vincent's Agent Skills
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/46063787-ba58-4e1f-bd1d-0b67377216c0" height="500" controls></video>
+  <h1>skills</h1>
+  <p>Vincent's Agent Skills</p>
+</div>
 
 > [!TIP]
 > Hint: `disable-model-invocation: true` means that the user need to trigger the skill manually, the agents won't trigger it automatically.
