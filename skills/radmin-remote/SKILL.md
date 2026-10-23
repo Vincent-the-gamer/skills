@@ -12,7 +12,7 @@ Radmin Viewer 3 是 **dialog-driven** 的：连接目标可以放命令行，凭
 有现成脚本时直接调用，它把下面第 1–4 步全做完了：
 
 ```powershell
-& "C:\Users\mer\.config\opencode\skills\radmin-remote\scripts\connect.ps1" `
+& "<skill-path>\scripts\connect.ps1" `
   -Address <IP> -User admin -Password (Read-Host -AsPlainText "密码")
 ```
 
