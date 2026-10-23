@@ -8,6 +8,8 @@ Check if vnc service is exist, and its' port.
 
 We use Node.js + [websockify-js](https://github.com/novnc/websockify-js).
 
+Before downloading, check whether `websockify-js` and a noVNC folder already exist on the machine and reuse them. Clone only what is missing.
+
 First:
 
 Download: https://github.com/novnc/websockify-js/tree/master/websockify folder.
@@ -25,7 +27,7 @@ novnc/websockify-js
 
 Second:
 
-Clone: [noVNC](https://github.com/novnc/noVNC) into websockify folder:
+Clone: [noVNC](https://github.com/novnc/noVNC) into websockify folder. Ask first whether GBK clipboard support is needed; if yes, clone [noVNC-GBK-Clipboard](https://github.com/Vincent-the-gamer/noVNC-GBK-Clipboard) there instead:
 
 ```
 novnc/websockify-js
