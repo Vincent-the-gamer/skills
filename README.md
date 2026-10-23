@@ -5,7 +5,7 @@
 </div>
 
 > [!TIP]
-> Hint: `disable-model-invocation: true` means that the user need to trigger the skill manually, the agents won't trigger it automatically.
+> Hint: `disable-model-invocation: true` means that user need to trigger the skill manually.
 
 ## Installation
 
