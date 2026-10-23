@@ -32,7 +32,7 @@ npx skills@latest add Vincent-the-gamer/skills
 - [heihua(互联网黑话)](./skills/heihua/README.md)
 - [kiseki-lang(轨言轨语)](./skills/kiseki-lang/README.md)
 - [radmin-remote](./skills/radmin-remote/README.md) - Windows only, Radmin Viewer/Server has only Windows version.
-- [google-flow](./skills/google-flow/README.md) - This skill is Browser automation drived, free google flow use method for image generating(video generating is not free).
+- [google-flow](./skills/google-flow/README.md) - This skill is **browser automation driven**, free google flow use method for image generating(video generating is not free).
 
 More skills are coming soon.
 
