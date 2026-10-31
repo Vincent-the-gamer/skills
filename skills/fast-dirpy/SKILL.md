@@ -9,7 +9,11 @@ license: Complete terms in LICENSE.txt
 
 [GitHub Repository](https://github.com/Vincent-the-gamer/fast-dirpy)
 
-You can call fast-dirpy CLI in two ways:
+## Check if the CLI exists.
+
+Check if fast-dirpy exists: `fast-dirpy --version`
+
+If not, you can call fast-dirpy CLI in two ways:
 
 - Global install: `npm i fast-dirpy -g`, then `fast-dirpy <command>`
 - No installation, directly use it through npx: `npx fast-dirpy <command>`
@@ -22,12 +26,8 @@ fast-dirpy -h
 
 ## Rules
 
-1. Before run commands, run `fast-dirpy -v` to check if fast-dirpy is installed, if not, use npx.
-2. Run the task in the background asynchronously, don't block the Agent, and tell user the PID of process.
-3. After doing rule 2, generate the `.log` file in the same path of video you download, then write the log content into it.
-4. If commands fails, show the user error message and stop running.
-5. When task is complete, tell user the result, no matter success or failure.
-6. If network request timed out, show the user error message and stop running.
+- You must open a visible terminal window and run the fast-dirpy tasks.
+- Follow the repo's README to use the CLI.
 
 ## Configuration
 
