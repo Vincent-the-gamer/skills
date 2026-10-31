@@ -21,6 +21,7 @@ Do not choose the install method for the user.
 
 ## Rules
 
+- **Visible terminal for downloads (preferred).** When downloading videos, prefer to explicitly open a *visible* terminal window and invoke the `fast-dirpy` CLI there, so the download progress is visible to the user. Do not run downloads in a hidden/background shell unless a visible window cannot be opened. On Windows, launch with `start`/`Start-Process` (e.g. `start "" cmd /k "fast-dirpy download --json-file params.json -H 127.0.0.1 -P 7890"` or `Start-Process wt -ArgumentList 'fast-dirpy','download','--json-file','params.json'`); on macOS/Linux use `open -a Terminal` / a new terminal emulator.
 - Run fast-dirpy tasks in a visible terminal window.
 - Follow this skill and the repo README. For exact flags run `fast-dirpy -h` or `fast-dirpy <command> -h`.
 - Some supported sites need Google Chrome for Puppeteer. Supply `--chromePath <path>` or a config file with `puppeteer.executablePath`.
