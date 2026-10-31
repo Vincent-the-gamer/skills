@@ -9,7 +9,7 @@ license: Complete terms in LICENSE.txt
 
 [GitHub Repository](https://github.com/Vincent-the-gamer/fast-dirpy)
 
-## Check if the CLI exists.
+## Check if the CLI exists
 
 Check if fast-dirpy exists: `fast-dirpy --version`
 
@@ -18,16 +18,10 @@ If not, you can call fast-dirpy CLI in two ways:
 - Global install: `npm i fast-dirpy -g`, then `fast-dirpy <command>`
 - No installation, directly use it through npx: `npx fast-dirpy <command>`
 
-## CLI Usage
-
-```bash
-fast-dirpy -h
-```
-
 ## Rules
 
 - You must open a visible terminal window and run the fast-dirpy tasks.
-- Follow the repo's README to use the CLI.
+- Follow the repo's README to use the CLI, find CLI help using: `fast-dirpy -h`
 
 ## Configuration
 
