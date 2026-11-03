@@ -48,13 +48,9 @@ bsk browsers
 
 没有偏好时的默认值：新图 16:9、2 张；改图 1 张；Nano Banana 2.1；无文字；不做视频。
 
-用户给的是图片链接而不是本地文件时，先下载到本地；`bsk upload` 只接受本地路径。确认文件存在且是 PNG/JPEG/WebP：
+用户给的是图片链接而不是本地文件时，先下载到本地；剪贴板粘贴只认本地文件。确认文件存在且是 PNG/JPEG/WebP：macOS/Linux 用 `ls -l <path> && file <path>`，Windows 用 `Get-Item <path>`，装了 ImageMagick 时三平台都可用 `magick identify <path>` 直接看格式和尺寸。
 
-```sh
-ls -l <path> && file <path>
-```
-
-HEIC 等格式先转换（macOS：`sips -s format png in.heic --out out.png`；或 ImageMagick）。
+HEIC 等格式先转换（macOS：`sips -s format png in.heic --out out.png`；Windows/Linux：ImageMagick `magick in.heic out.png`）。
 
 **完成判据**：brief 每个槽位都有值或用户明确说“你定”；参考图都能在本地读到；已明确本次不做视频（或用户主动要视频，转第 8 步）。
 
@@ -152,7 +148,7 @@ bsk request-help --session <sid> \
 
 ## 4. 进入免费图片工作区
 
-生成和改图都在**右侧 Agent 面板**完成。中间的素材网格是库：用左侧 **图片** 筛选浏览，用缩略图上的 hover 菜单下载；**不点缩略图进入详情页去生成**——那条路会离开免费图片路径，容易引导到付费视频工具。需要引用某张图时，用 `@` 或附件把它带进对话。
+生成和改图都在**右侧 Agent 面板**完成。中间的素材网格是库：用左侧 **图片** 筛选浏览，用缩略图上的 hover 菜单下载；**不点缩略图进入详情页去生成**——那条路会离开免费图片路径，容易引导到付费视频工具。需要引用某张图时，用 `@` 引用或剪贴板粘贴把它带进对话。
 
 - 面板关了就重新打开 Agent，等输入框 **“您希望创作什么？”** 出现。
 - 左侧点 **图片** 筛选，避免在 **所有媒体** 里打开视频。
@@ -164,22 +160,41 @@ bsk request-help --session <sid> \
 
 ## 5. 附加/引用素材
 
-两种方式，优先用附件，稳定且可见：
+参考图从**剪贴板粘贴**进输入框，或者用 `@` 引用库里的图。两条路都在页面内完成，会话不会离开浏览器。
 
-- **上传本地图**：点输入框左侧的 `+`；如果它先弹出菜单，先选上传/图片，再让 `bsk upload` 指向真正的上传控件。也可以把文件拖进输入框。
+- **粘贴本地图（首选）**：先把文件放进系统剪贴板，再在输入框里粘贴。按平台选命令（`uname -s` 判断；Linux 再看 `$WAYLAND_DISPLAY`）：
 
 ```sh
-bsk upload @eN --file /abs/a.png --session <sid>
-bsk cooperate sync --session <sid>
+# macOS
+osascript -e 'set the clipboard to (read (POSIX file "/abs/a.png") as «class PNGf»)'
+
+# Linux · X11
+xclip -selection clipboard -t image/png -i /abs/a.png
+
+# Linux · Wayland
+wl-copy --type image/png < /abs/a.png
 ```
 
-- **引用库里的图**：在输入框里输入 `@` 打开素材选择器，选中目标，确认出现引用 chip（如 `@image.png`）。如果 `fill` 之后没有生成 chip，改用 `+` 把图附加进来。
+```powershell
+# Windows（PowerShell 需要 STA；clip.exe 只能传文本，不能传图）
+powershell -STA -NoProfile -Command "Add-Type -AssemblyName System.Windows.Forms,System.Drawing; $i=[System.Drawing.Image]::FromFile('C:\abs\a.png'); [System.Windows.Forms.Clipboard]::SetImage($i); $i.Dispose()"
+```
 
-要改某张图时，用 `@` 或附件把**那一张**带进对话；不要点开它的详情页。
+只装了 PowerShell 7 时把 `powershell` 换成 `pwsh`。
 
-只上传用户点名的文件；确认用户有权使用每张参考图（尤其是真人肖像）。上传后看缩略图/chip 是否真的进了输入框；`file_input_not_activated` 时重新 observe 一次，只有明确的拖放区才用一次 `--mode drop`，否则问用户。
+然后在输入框执行粘贴（macOS 是 Cmd+V，Windows/Linux 是 Ctrl+V；用 browser-skill 的按键/输入命令发送，命令名以 `bsk --help` 为准），再 `bsk cooperate sync` 确认缩略图进了输入框。多张参考图逐张复制粘贴，每张粘贴后确认一次。
 
-**完成判据**：每张参考图都以 chip/附件形式出现在输入框里，对应关系正确。
+JPEG 把 `«class PNGf»` 换成 `«class JPEG»`（macOS）；WebP 剪贴板不认，先 `sips -s format png`（macOS）或 ImageMagick `magick in.webp out.png` 转成 PNG 再复制。Linux 没装 `xclip`/`wl-clipboard` 就请用户装，或改由用户自己拖入文件。
+
+- **引用库里的图**：在输入框里输入 `@` 打开素材选择器，选中目标，确认出现引用 chip（如 `@image.png`）。如果 `fill` 之后没有生成 chip，改用粘贴。
+
+输入框旁的 `+` 菜单里，“上传媒体内容”打开的是系统文件选择框。那个对话框在浏览器之外，`bsk` 点不到也读不到，点下去会话就卡住到超时。确实需要走这个入口时，先请用户自己在对话框里选好文件（`bsk request-help`），同时看能不能改用粘贴。
+
+要改某张图时，用粘贴或 `@` 把**那一张**带进对话；不要点开它的详情页。
+
+只上传用户点名的文件；确认用户有权使用每张参考图（尤其是真人肖像）。上传后看缩略图/chip 是否真的进了输入框；没有就重新 `observe`，换一张图再粘一次，仍不行就问用户。
+
+**完成判据**：每张参考图都以缩略图/chip 形式出现在输入框里，对应关系正确。
 
 ## 6. 填入并发送
 
@@ -208,6 +223,7 @@ bsk click @eN --session <sid> --context <ctx>
 - 看 Agent 回复里的图，按 brief 检查：主体、构图、文字、手部、参考图一致性。
 - 不满意就继续对话改图：一次只改一处，引用刚才那张图，写清保留项；用 [references/prompting.md](references/prompting.md) 里的改图模板。每轮仍然先写文字政策，再跑一遍机械检查。
 - 下载：在中间素材网格里找到刚生成的图（通常在最新），或在 Agent 回复里找下载图标；hover 菜单优先，不点缩略图本身。如果只有详情页能下载，先问用户是否接受进入详情页（那里可能引导视频）。
+- 下载文件落在浏览器配置的**下载目录**里，不在项目目录，也不会问路径：macOS/Linux 通常 `~/Downloads`，Windows 通常 `%USERPROFILE%\Downloads`。点下载前先记下目录里当前最新的文件，点完再找比它更新的那一个（`ls -lt`，Windows 用 `Get-ChildItem | Sort-Object LastWriteTime`），确认是刚生成的图，再移动到用户指定的路径。目录里没有新文件就问用户当前下载目录，不要全盘搜索，也不要重复点下载。
 - 目标文件已存在时先问，另存或确认后替换。
 
 图片生成免费，但每次发送前仍然跑一遍零花费检查。迭代期间保持会话；用户确认结束或任务失败时停止：
@@ -238,7 +254,9 @@ bsk session stop <sid>
 | 页面出现视频 / Veo / “生成视频” | 这次要不要做付费视频？ | 默认不点；留在图片 Agent 面板 |
 | 用户说“片段 / 动画 / 动起来” | 你要图片还是付费视频？ | 默认按图片；确认后才走视频分支 |
 | 不小心进了图片详情页 | 要我返回项目页继续吗？ | 返回；在右侧 Agent 面板重新生成/改图 |
-| 上传没反应 | 文件路径和格式对吗？换一张试试？ | 重新 observe；仅明确拖放区试一次 drop |
+| 上传对话框弹出、会话卡住 | 请在对话框里点取消，我改用剪贴板粘贴 | 请用户取消对话框；改走粘贴；必须由用户选文件时 request-help |
+| 粘贴后输入框没有缩略图 | 换一张图，还是我再粘一次？ | 确认焦点在输入框再粘；核对本平台剪贴板命令（会话里没粘贴快捷键就换 Ctrl/Cmd+V 试试）；仍不行就问用户 |
+| 下载后找不到文件 | 你的浏览器下载目录是哪个？ | 去默认下载目录按时间找最新文件，移动到目标路径 |
 | 提示词优化后仍不稳定 | 最在意人物、构图还是文字？ | 缩短提示词，只保留一个主要变化；用参考图锁身份 |
 | Agent 只回文字或拒绝 | 换一种描述可以吗？ | 简化提示词；拆成一次一个改动；检查政策 |
 | 登录 / 2FA / 人机验证 | 请在弹出的窗口完成，完成后告诉我 | request-help；密码和验证码由用户本人完成 |
@@ -252,7 +270,7 @@ bsk session stop <sid>
 ## 操作纪律
 
 - 默认图片；视频需要用户明确要求 + 确认积分。
-- 生成和改图只在项目页右侧 Agent 面板完成；缩略图只用于筛选浏览和 hover 菜单下载，引用图片用 `@`/附件。
+- 生成和改图只在项目页右侧 Agent 面板完成；缩略图只用于筛选浏览和 hover 菜单下载；参考图靠剪贴板粘贴或 `@` 引用，`+` 菜单的系统上传对话框交给用户。
 - 先优化提示词，再发送；一次只改一件事。
 - 每个反复出现的角色/地点/道具用稳定的 `@PascalCase` 句柄，提示词和素材名一致。
 - 只上传用户点名的文件，并确认用户有权使用每张参考图（尤其是真人肖像）。
