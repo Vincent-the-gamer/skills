@@ -1,7 +1,7 @@
 # mcp-server-dev
 
 > [!IMPORTANT]
-> This is a skills pack, you will install all the skills into `./skills`
+> This is a skills pack, you will install all the skills listed in `./skills`
 
 Skills for designing and building MCP servers that work seamlessly with Claude.
 
