@@ -1,5 +1,5 @@
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/46063787-ba58-4e1f-bd1d-0b67377216c0" height="500" controls></video>
+<img width="1638" height="921" alt="20261112_131521_QwenEdit_00001_eaxxj_1794460581_PhotoGrid_waifu2x_art_scale" src="https://github.com/user-attachments/assets/812e2f57-bd11-47bb-9dc6-43584038d6a3" />
   <h1>skills</h1>
   <p>Vincent's Agent Skills</p>
 </div>
