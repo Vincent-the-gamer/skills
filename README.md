@@ -22,6 +22,7 @@ npx skills@latest add Vincent-the-gamer/skills
 - [novnc](./skills/novnc/README.md)
 - [node-cli-creator](./skills/node-cli-creator/README.md)
 - [mcp-server-dev](./skills/mcp-server-dev/README.md) - skill pack
+- [waifu2x](./skills/waifu2x/README.md)
 
 ### Skills from Matt Pocock
 
