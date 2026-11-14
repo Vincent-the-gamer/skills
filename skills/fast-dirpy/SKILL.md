@@ -28,11 +28,14 @@ Do not choose the install method for the user.
 
 ## Supported sites
 
-YouTube, Bilibili, and `.m3u8` videos. NSFW (under `<details>` in README): Animehentai, Koreanpornmovies, XVideos, Hanime1.me, wow.xxx, rule34.xyz, lewd ninja, sfmcompile.club, ugoira (pixiv GIF), missav, xhamster.
+YouTube, Bilibili, and `.m3u8` videos. NSFW (under `<details>` in README): Animehentai, Koreanpornmovies, XVideos, Hanime1.me, wow.xxx, Eporner, YouPorn, rule34.xyz, lewd ninja, sfmcompile.club, ugoira (Pixiv GIF), missav, xhamster.
+
+- **sfmcompile.club**: pass a video page link, `https://sfmcompile.club/<video-tag>`; the bare domain is not a valid input.
+- **ugoira**: download-only. Its direct link cannot be opened without a `referer` header, so there is no `get` flow for it.
 
 ## Config file (optional)
 
-`fast-dirpy.config.[ts, mts, cts, js, mjs, cjs, json]` in the working directory, or pass `-c <path>`.
+`fast-dirpy.config.[ts, mts, cts, js, mjs, cjs, json]` in the working directory, or pass `-c <path>`. Command-line flags override config file values.
 
 ```ts
 import { defineConfig } from 'fast-dirpy'
@@ -41,6 +44,7 @@ export default defineConfig({
   proxy: { protocol: 'http', host: '127.0.0.1', port: 7890 },
   timeout: 20000,
   puppeteer: {
+    // On macOS this must be the executable inside the .app bundle.
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     headless: true,
   },
@@ -82,9 +86,10 @@ fast-dirpy ugoira <artwork_url> [-H <host>] [-P <port>] [--silent]
 
 ## Special cases
 
-- **missav / xhamster**: these have Cloudflare challenges. Manually download the HTML page (no JS/CSS, HTML only), then pass the local file with a scheme prefix:
+- **missav**: Cloudflare challenge that Puppeteer cannot bypass. Download the HTML page manually (HTML only, no JS/CSS), then pass the local file with the `missav:` prefix:
   - `fast-dirpy download --json '[{"url":"missav:/path/to/xxx.html","path":"./msav-test.mp4"}]'`
+  - This method is unstable and may return HTTP 429.
+- **xhamster**: normal requests mostly fail. Since v1.0.2, the same manual HTML method works with the `xhamster:` prefix:
   - `fast-dirpy download --json '[{"url":"xhamster:/path/to/xxx.html","path":"./xh-test.mp4"}]'`
-  - missav method is unstable and may return HTTP 429.
-- **Proxy**: pass `-H`/`-P`, or omit when configured in the config file.
+- **Proxy**: pass `-H`/`-P`, or omit when configured in the config file. Bilibili needs no proxy.
 - **params.json**: array of `{ "url", "path" }` (optional `cwd` for an external config). Do not read it; pass it via `--json-file`.
